@@ -64,39 +64,22 @@ class LogConfig with _$LogConfig {
 
   static late LogConfig _instance;
   static LogConfig get instance => _instance;
-  static late String _path;
-  static bool _initialised = false;
 
-  /// [_instance] can only be initialised once
-  /// This should be called once only after WidgetsFlutterBinding.ensureInitialized()
-  static Future<void> init(String path) async {
-    log().d('init : path=$path');
-    if (_initialised) return;
-    await _load(path);
-    _initialised = true;
-  }
-
-  /// [_instance] can only be reloaded if it has already been initialized once
-  /// This should be called in the root App build method to support hot reload
-  static Future<void> reload([String? path]) async {
-    log().d('reload : path=$path');
-    if (_initialised) {
-      await _load(path);
-    }
-  }
-
-  /// Loads the log configuration from json file in [path]
-  static Future<void> _load([String? path]) async {
-    log().d('load : path=$path');
-    _path = path ?? _path;
-    Map<String, dynamic> json;
-    if (path == null) {
-      json = _defaultConfig;
+  /// This should be called after WidgetsFlutterBinding.ensureInitialized()
+  static Future<LogConfig> init([dynamic config]) async {
+    log().d('init : config=$config');
+    if (config is LogConfig) {
+      _instance = config;
+    } else if (config is Map<String, dynamic>) {
+      _instance = LogConfig.fromJson(config);
+    } else if (config is String) {
+      _instance = LogConfig.fromJson(jsonDecode(config));
+    } else if (config is File) {
+      _instance = LogConfig.fromJson(jsonDecode(await config.readAsString()));
     } else {
-      final string = await File(path).readAsString();
-      json = jsonDecode(string) as Map<String, dynamic>;
+      _instance = LogConfig.fromJson(_defaultConfig);
     }
-    _instance = LogConfig.fromJson(json);
+    return _instance;
   }
 }
 
