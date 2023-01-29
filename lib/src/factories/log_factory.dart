@@ -108,6 +108,10 @@ class InfrastructureLayerFactory {
     return LogFactory.create<T>(layer: LogLayer.infrastructure, category: LogCategory.repo, tags: tags);
   }
 
+  Logger service<T>([Set<String> tags = const {}]) {
+    return LogFactory.create<T>(layer: LogLayer.application, category: LogCategory.service, tags: tags);
+  }
+
   Logger util<T>([Set<String> tags = const {}]) {
     return LogFactory.create<T>(layer: LogLayer.infrastructure, category: LogCategory.util, tags: tags);
   }
