@@ -48,6 +48,10 @@ class DomainLayerFactory {
     return LogFactory.create<T>(layer: LogLayer.domain, category: LogCategory.value, tags: tags);
   }
 
+  Logger factory<T>([Set<String> tags = const {}]) {
+    return LogFactory.create<T>(layer: LogLayer.domain, category: LogCategory.factory, tags: tags);
+  }
+
   Logger util<T>([Set<String> tags = const {}]) {
     return LogFactory.create<T>(layer: LogLayer.domain, category: LogCategory.util, tags: tags);
   }

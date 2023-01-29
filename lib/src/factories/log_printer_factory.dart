@@ -15,138 +15,112 @@ abstract class LogPrinterFactory {
   }
 
   static DddLogPrinter byLayer<T>(
-      {required LogLayer layer,
-      required LogCategory category,
-      Set<String> tags = const {}}) {
+      {required LogLayer layer, required LogCategory category, Set<String> tags = const {}}) {
     switch (layer) {
       case LogLayer.common:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byLayer[LogLayer.common] ??
-                    AnsiColors.yellow));
+            color: AnsiColor.fg(LogConfig.instance.color.byLayer[LogLayer.common] ?? AnsiColors.yellow));
       case LogLayer.domain:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byLayer[LogLayer.domain] ??
-                    AnsiColors.pink));
+            color: AnsiColor.fg(LogConfig.instance.color.byLayer[LogLayer.domain] ?? AnsiColors.pink));
       case LogLayer.application:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byLayer[LogLayer.application] ??
-                    AnsiColors.lightBlue));
+            color: AnsiColor.fg(LogConfig.instance.color.byLayer[LogLayer.application] ?? AnsiColors.lightBlue));
       case LogLayer.infrastructure:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byLayer[LogLayer.infrastructure] ??
-                    AnsiColors.orange));
+            color: AnsiColor.fg(LogConfig.instance.color.byLayer[LogLayer.infrastructure] ?? AnsiColors.orange));
       case LogLayer.presentation:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byLayer[LogLayer.presentation] ??
-                    AnsiColors.green));
+            color: AnsiColor.fg(LogConfig.instance.color.byLayer[LogLayer.presentation] ?? AnsiColors.green));
     }
   }
 
   static DddLogPrinter byCategory<T>(
-      {required LogLayer layer,
-      required LogCategory category,
-      Set<String> tags = const {}}) {
+      {required LogLayer layer, required LogCategory category, Set<String> tags = const {}}) {
     switch (category) {
       case LogCategory.repo:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.repo] ??
-                    AnsiColors.orange));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.repo] ?? AnsiColors.orange));
       case LogCategory.service:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.service] ??
-                    AnsiColors.blue));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.service] ?? AnsiColors.blue));
       case LogCategory.util:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.util] ??
-                    AnsiColors.yellow));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.util] ?? AnsiColors.yellow));
       case LogCategory.entity:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.entity] ??
-                    AnsiColors.pink));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.entity] ?? AnsiColors.pink));
       case LogCategory.value:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.value] ??
-                    AnsiColors.hotPink));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.value] ?? AnsiColors.hotPink));
+      case LogCategory.factory:
+        return DddLogPrinter<T>(
+            layer: layer,
+            category: category,
+            tags: tags,
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.factory] ??
+                LogConfig.instance.color.byCategory[LogCategory.factory] ??
+                AnsiColors.hotPink));
       case LogCategory.controller:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.controller] ??
-                    AnsiColors.lightBlue));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.controller] ?? AnsiColors.lightBlue));
       case LogCategory.view:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.view] ??
-                    AnsiColors.green));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.view] ?? AnsiColors.green));
       case LogCategory.viewModel:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.viewModel] ??
-                    AnsiColors.purple));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.viewModel] ?? AnsiColors.purple));
       case LogCategory.mapper:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.mapper] ??
-                    AnsiColors.lightOrange));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.mapper] ?? AnsiColors.lightOrange));
       case LogCategory.model:
         return DddLogPrinter<T>(
             layer: layer,
             category: category,
             tags: tags,
-            color: AnsiColor.fg(
-                LogConfig.instance.color.byCategory[LogCategory.model] ??
-                    AnsiColors.darkPurple));
+            color: AnsiColor.fg(LogConfig.instance.color.byCategory[LogCategory.model] ?? AnsiColors.darkPurple));
     }
   }
 }

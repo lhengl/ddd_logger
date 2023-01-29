@@ -9,6 +9,7 @@ enum LogCategory {
   // domain categories
   entity,
   value,
+  factory,
 
   // presentation categories
   controller,
