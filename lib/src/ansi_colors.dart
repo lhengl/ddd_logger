@@ -1,4 +1,4 @@
-part of '../ddd_logger.dart';
+part of 'ddd_logger.dart';
 
 abstract class AnsiColors {
   static const grey = 8;
